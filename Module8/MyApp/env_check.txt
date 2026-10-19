@@ -1,0 +1,5 @@
+Module 7 environment check
+
+Node.js: v24.21.0
+npm: 11.19.0
+Expo CLI: 57.0.28

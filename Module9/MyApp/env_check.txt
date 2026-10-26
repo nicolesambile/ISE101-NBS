@@ -1,0 +1,11 @@
+Environment check (not run: Node.js and npm are not available on PATH)
+
+Node.js: Not installed / not available
+npm: Not installed / not available
+Expo CLI: Not checked (install Node.js and npm first; then run npx expo --version)
+
+After installing Node.js LTS, run these commands in PowerShell and replace the
+values above with the output:
+  node -v
+  npm -v
+  npx expo --version

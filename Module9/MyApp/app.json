@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "Module 9 MyApp",
+    "slug": "module9-my-app",
+    "icon": "./assets/icon.png",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "assetBundlePatterns": ["**/*"]
+  }
+}

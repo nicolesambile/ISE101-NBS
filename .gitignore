@@ -1,4 +1,33 @@
+<<<<<<< HEAD
+your local rules
+=======
+rules from GitHub
+>>>>>>> origin/main
+=======
+**/node_modules/
+**/.expo/
+**/dist/
+**/web-build/
+.env
+>>>>>>> 9d1ecef0e717e0d80d665350feb5436e8c761319
+
+# Dependencies
 node_modules/
+
+# Expo
 .expo/
 dist/
 web-build/
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Environment variables and secrets
+.env
+.env.*
+
+# Operating system files
+.DS_Store
+Thumbs.db

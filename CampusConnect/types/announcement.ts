@@ -1,4 +1,4 @@
-export type AnnouncementCategory = 'Academic' | 'Events' | 'Notice';
+export type AnnouncementCategory = 'Academic' | 'Events' | 'Notice' | 'Community';
 
 export interface Announcement {
     id: string;

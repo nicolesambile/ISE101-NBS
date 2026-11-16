@@ -73,12 +73,14 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: '#111827',
     marginBottom: 8,
+    textAlign: 'left',
   },
   counter: {
     fontSize: 15,
     fontWeight: '600',
     color: '#2563EB',
     marginBottom: 12,
+    textAlign: 'left',
   },
   list: {
     width: '100%',

@@ -1,65 +1,106 @@
 
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 
-import type { Announcement } from '../../types/announcement';
-import { getUnreadAnnouncements } from '../../services/announcementUtils';
+import AnnouncementPanel from '../components/AnnouncementPanel';
 
-const sampleAnnouncements: Announcement[] = [
-  { id: 'a1', title: 'Enrollment reminders', category: 'Academic', read: false },
-  { id: 'a2', title: 'Campus Orientation', category: 'Events', read: true },
+const sampleAnnouncements = [
+  {
+    id: 'a1',
+    title: 'Enrollment reminders',
+    category: 'Academic',
+    read: false,
+  },
+  {
+    id: 'a2',
+    title: 'Campus Orientation',
+    category: 'Events',
+    read: true,
+  },
 ];
 
 export default function HomeScreen() {
-  const unread = getUnreadAnnouncements(sampleAnnouncements);
+  const unread = sampleAnnouncements.filter(
+    (item) => !item.read
+  );
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>Campus Connect</Text>
-      <Text>One campus. Connected students.</Text>
-      <Text>Welcome to the Week 1 project foundation.</Text>
+
+      <Text style={styles.subtitle}>
+        One campus. Connected students.
+      </Text>
+
+      <Text style={styles.subtitle}>
+        Welcome to the Week 1 project foundation.
+      </Text>
 
       <View style={styles.card}>
-        <Text style={styles.cardTitle}>Announcement Utility Test</Text>
-        <Text style={styles.cardText}>Total Announcements: {sampleAnnouncements.length}</Text>
-        <Text style={styles.cardText}>Unread Announcements: {unread.length}</Text>
+        <Text style={styles.cardTitle}>
+          Announcement Utility Test
+        </Text>
 
-        {unread.map(item => (
+        <Text style={styles.cardText}>
+          Total Announcements: {sampleAnnouncements.length}
+        </Text>
+
+        <Text style={styles.cardText}>
+          Unread Announcements: {unread.length}
+        </Text>
+
+        {unread.map((item) => (
           <Text key={item.id} style={styles.cardText}>
             • {item.title}
           </Text>
         ))}
+
+        <AnnouncementPanel />
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 24,
-    backgroundColor: '#F4F7FB',
+    backgroundColor: '#F3F6FA',
+    paddingTop: 24,
+    paddingHorizontal: 18,
+    paddingBottom: 32,
   },
 
   title: {
-    fontSize: 28,
-    fontWeight: '700',
-    marginBottom: 12,
+    fontSize: 30,
+    fontWeight: '800',
+    color: '#111827',
+    marginBottom: 6,
+  },
+
+  subtitle: {
+    fontSize: 15,
+    color: '#444F5F',
+    lineHeight: 22,
+    textAlign: 'center',
   },
 
   card: {
     width: '100%',
+    maxWidth: 720,
     backgroundColor: '#FFFFFF',
     padding: 16,
     borderRadius: 10,
     marginTop: 22,
+    borderWidth: 1,
+    borderColor: '#DCE3EC',
   },
 
   cardTitle: {
     fontSize: 16,
     fontWeight: '700',
     marginBottom: 10,
+    color: '#111827',
   },
 
   cardText: {

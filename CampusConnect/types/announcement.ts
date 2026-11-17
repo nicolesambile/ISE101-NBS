@@ -5,4 +5,5 @@ export interface Announcement {
     title: string;
     category: AnnouncementCategory;
     read: boolean;
+    details?: string;
 }

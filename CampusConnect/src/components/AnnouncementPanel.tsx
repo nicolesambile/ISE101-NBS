@@ -1,32 +1,13 @@
+import { router } from 'expo-router';
 import { useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
+import { sampleAnnouncements } from '../../services/announcementUtils';
 import type { Announcement } from '../../types/announcement';
 import AnnouncementCard from './AnnouncementCard';
 
-const initialAnnouncements: Announcement[] = [
-  {
-    id: 'ANN-001',
-    title: 'Enrollment Reminder',
-    category: 'Academic',
-    read: false,
-  },
-  {
-    id: 'ANN-002',
-    title: 'Sports Festival Announcement',
-    category: 'Events',
-    read: false,
-  },
-  {
-    id: 'ANN-003',
-    title: 'Campus Clean-up Drive',
-    category: 'Community',
-    read: true,
-  },
-];
-
 export default function AnnouncementPanel() {
-  const [announcements, setAnnouncements] = useState<Announcement[]>(initialAnnouncements);
+  const [announcements, setAnnouncements] = useState<Announcement[]>(sampleAnnouncements);
 
   const unreadCount = useMemo(
     () => announcements.filter(announcement => !announcement.read).length,
@@ -43,6 +24,10 @@ export default function AnnouncementPanel() {
     );
   };
 
+  const handleOpenAnnouncement = (id: string) => {
+    router.push({ pathname: '/announcements/[id]', params: { id } });
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Campus Announcements</Text>
@@ -52,9 +37,11 @@ export default function AnnouncementPanel() {
         {announcements.map(announcement => (
           <AnnouncementCard
             key={announcement.id}
+            id={announcement.id}
             title={announcement.title}
             category={announcement.category}
             read={announcement.read}
+            onPress={() => handleOpenAnnouncement(announcement.id)}
             onMarkRead={() => handleMarkRead(announcement.id)}
           />
         ))}

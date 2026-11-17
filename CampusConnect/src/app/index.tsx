@@ -1,3 +1,4 @@
+import { router } from 'expo-router';
 import {
   Image,
   ScrollView,
@@ -9,21 +10,7 @@ import {
 import ActionButton from '../components/ActionButton';
 import AnnouncementPanel from '../components/AnnouncementPanel';
 import SectionHeading from '../components/SectionHeading';
-
-const sampleAnnouncements = [
-  {
-    id: 'a1',
-    title: 'Enrollment reminders',
-    category: 'Academic',
-    read: false,
-  },
-  {
-    id: 'a2',
-    title: 'Campus Orientation',
-    category: 'Events',
-    read: true,
-  },
-];
+import { sampleAnnouncements } from '@/services/announcementUtils';
 
 export default function HomeScreen() {
   const unread = sampleAnnouncements.filter((item) => !item.read);
@@ -49,7 +36,7 @@ export default function HomeScreen() {
 
         <ActionButton
           title="View All Announcements"
-          onPress={() => undefined}
+          onPress={() => router.push('/explore')}
         />
         <Image
           source={require('../../assets/images/campus-banner.png')}

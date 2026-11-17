@@ -1,23 +1,35 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 type AnnouncementCardProps = {
+  id: string;
   title: string;
   category: string;
   read: boolean;
+  onPress?: () => void;
   onMarkRead: () => void;
 };
 
 export default function AnnouncementCard({
+  id,
   title,
   category,
   read,
+  onPress,
   onMarkRead,
 }: AnnouncementCardProps) {
   return (
     <View style={styles.card}>
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.category}>Category: {category}</Text>
-      <Text style={styles.status}>Status: {read ? 'Read' : 'Unread'}</Text>
+      <Pressable
+        accessibilityRole="button"
+        accessibilityLabel={`Open ${title}`}
+        onPress={onPress}
+        style={({ pressed }) => [styles.cardPressable, pressed && styles.cardPressed]}
+      >
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.category}>Category: {category}</Text>
+        <Text style={styles.status}>Status: {read ? 'Read' : 'Unread'}</Text>
+        <Text style={styles.linkText}>View details • ID {id}</Text>
+      </Pressable>
 
       <Pressable
         accessibilityRole="button"
@@ -52,6 +64,12 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     elevation: 2,
   },
+  cardPressable: {
+    width: '100%',
+  },
+  cardPressed: {
+    opacity: 0.7,
+  },
   title: {
     fontSize: 17,
     fontWeight: '700',
@@ -68,8 +86,14 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: '#374151',
     marginTop: 6,
-    marginBottom: 12,
+    marginBottom: 8,
     textAlign: 'left',
+  },
+  linkText: {
+    fontSize: 12,
+    color: '#2563EB',
+    fontWeight: '600',
+    marginBottom: 8,
   },
   button: {
     backgroundColor: '#2563EB',
